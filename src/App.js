@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Header from './components/Header'
+import Home from './pages/Home'
+import Footer from './components/Footer'
+import Signup from './components/Signup'
+import Login from './components/Login'
+import AnimeIndex from './pages/AnimeIndex'
+import AnimeShow from './pages/AnimeShow'
+import MyAnimeList from './pages/MyAnimeList'
+import MyAnimeListEdit from './pages/MyAnimeListEdit'
+import MyAnimeListShow from './pages/MyAnimeListShow'
+import MyAnimeListNew from './pages/MyAnimeListNew'
+import NotFound from './pages/NotFound'
+import mockUsers from './mockUsers'
+import mockAnime from './mockAnime'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+const App = () => {
+
+  const [currentUser, setCurrentUser] = useState(mockUsers)
+  const [anime, setAnime] = useState(mockAnime)
+
+  return(
+    <>
+      <BrowserRouter>
+        <Header current_user={currentUser}/>
+        <Routes>
+          <Route path='/' element={<Home /> }/>
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/animeindex' element={<AnimeIndex anime={anime}/>}/>
+          <Route path='/animeshow' element={<AnimeShow />}/>
+          <Route path='/myanimelist' element={<MyAnimeList />}/>
+          <Route path='/myanimelistedit' element={<MyAnimeListEdit />}/>
+          <Route path='/myanimelistnew' element={<MyAnimeListNew />}/>
+          <Route path='/myanimelistshow' element={<MyAnimeListShow />}/>
+          <Route path='/notfound' element={<NotFound/>}/>
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </>
+  )
 }
 
-export default App;
+export default App
