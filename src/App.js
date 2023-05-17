@@ -25,7 +25,7 @@ const App = () => {
   return(
     <>
       <BrowserRouter>
-        <Header current_user={currentUser}/>
+        <Header current_user={!currentUser}/>
         <Routes>
           <Route path='/' element={<Home /> }/>
           <Route path='/signup' element={<Signup />} />
