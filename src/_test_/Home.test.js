@@ -8,3 +8,15 @@ describe('<Home />', () => {
         expect(element).toBeInTheDocument()
     })
 })
+
+describe ('<Home/>', () => {
+    it('renders without error', () => {
+        render(<Home />)
+    })
+
+    it('renders carousel images', () => {
+        render(<Home />);
+        const carouselImages = screen.getAllByRole('img');
+        expect(carouselImages).toHaveLength(3);
+      })
+})
