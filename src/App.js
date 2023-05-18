@@ -14,6 +14,7 @@ import MyAnimeListNew from './pages/MyAnimeListNew'
 import NotFound from './pages/NotFound'
 import mockUsers from './mockUsers'
 import mockAnime from './mockAnime'
+import AboutUs from './pages/AboutUs'
 
 
 
@@ -36,6 +37,7 @@ const App = () => {
           <Route path='/myanimelistedit' element={<MyAnimeListEdit />}/>
           <Route path='/myanimelistnew' element={<MyAnimeListNew />}/>
           <Route path='/myanimelistshow' element={<MyAnimeListShow />}/>
+          <Route path='/aboutus' element={<AboutUs />}/>
           <Route path='/notfound' element={<NotFound/>}/>
         </Routes>
         <Footer />

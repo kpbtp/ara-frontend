@@ -16,6 +16,9 @@ const Navigation = ( { current_user } ) => {
                         <NavItem>
                             <NavLink className='nav-link' to='/animelistnew'>Create a List</NavLink> 
                         </NavItem>
+                        <NavItem>
+                            <NavLink className='nav-link' to='/aboutus'>I hath no wit</NavLink> 
+                        </NavItem>
                     </>
                 ) }
                 { !current_user && (
@@ -28,6 +31,9 @@ const Navigation = ( { current_user } ) => {
                         </NavItem>
                         <NavItem>
                             <NavLink className='nav-link' to='/animeindex'>Browse All</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink className='nav-link' to='/aboutus'>I hath no wit</NavLink> 
                         </NavItem>
                         
                     </>
