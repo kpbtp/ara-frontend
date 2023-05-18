@@ -11,10 +11,10 @@ import "../pages/Index.css"
 
 const AnimeIndex = ({ anime }) => {
   return (
-    <div className="card-container">
+    <div className="m-auto grid items-center grid-cols-3 justify-center">
       {anime?.map(({name,year, synopsis, run_time, seasons, episodes, studio, genres}) => {
         return (
-          <Card>
+          <Card className="flex w-18rem mx-auto my-0">
           <img alt="Sample" src="https://picsum.photos/300/200" />
           <CardBody>
             <CardTitle tag="h5">{name}</CardTitle>
