@@ -1,5 +1,3 @@
-import 'jest-webgl-canvas-mock';
-import '@testing-library/jest-dom';
 import * as THREE from "three";
 import { useEffect, useRef } from "react";
 
