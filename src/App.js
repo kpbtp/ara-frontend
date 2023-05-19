@@ -33,7 +33,7 @@ const App = () => {
           <Route path="/myanimelist" element={<MyAnimeList />} />
           <Route path="/myanimelistedit" element={<MyAnimeListEdit />} />
           <Route path="/myanimelistnew" element={<MyAnimeListNew />} />
-          <Route path="/myanimelistshow" element={<MyAnimeListShow />} />
+          <Route path="/myanimelistshow" element={<MyAnimeListShow anime={anime} />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/notfound" element={<NotFound />} />
         </Routes>
