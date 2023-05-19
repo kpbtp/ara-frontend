@@ -16,29 +16,26 @@ import mockUsers from './mockUsers'
 import mockAnime from './mockAnime'
 import AboutUs from './pages/AboutUs'
 
-
-
 const App = () => {
-
   const [currentUser, setCurrentUser] = useState(mockUsers)
   const [anime, setAnime] = useState(mockAnime)
 
-  return(
+  return (
     <>
       <BrowserRouter>
-        <Header current_user={!currentUser}/>
+        <Header current_user={!currentUser} />
         <Routes>
-          <Route path='/' element={<Home /> }/>
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/animeindex' element={<AnimeIndex anime={anime}/>}/>
-          <Route path='/animeshow' element={<AnimeShow />}/>
-          <Route path='/myanimelist' element={<MyAnimeList />}/>
-          <Route path='/myanimelistedit' element={<MyAnimeListEdit />}/>
-          <Route path='/myanimelistnew' element={<MyAnimeListNew />}/>
-          <Route path='/myanimelistshow' element={<MyAnimeListShow />}/>
-          <Route path='/aboutus' element={<AboutUs />}/>
-          <Route path='/notfound' element={<NotFound/>}/>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/animeindex" element={<AnimeIndex anime={anime} />} />
+          <Route path="/animeshow/:id" element={<AnimeShow anime={anime} />} /> 
+          <Route path="/myanimelist" element={<MyAnimeList />} />
+          <Route path="/myanimelistedit" element={<MyAnimeListEdit />} />
+          <Route path="/myanimelistnew" element={<MyAnimeListNew />} />
+          <Route path="/myanimelistshow" element={<MyAnimeListShow />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/notfound" element={<NotFound />} />
         </Routes>
         <Footer />
       </BrowserRouter>
