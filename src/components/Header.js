@@ -1,9 +1,10 @@
  import Navigation from "./Navigation"
+ import { NavLink } from "react-router-dom" 
 
  const Header =( { current_user } ) => {
     return (
         <>
-            <h1>Logo</h1>
+            <NavLink className='nav-link' to='/'>Logo</NavLink>
             <Navigation current_user={current_user} />
         </>
     )
