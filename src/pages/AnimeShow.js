@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom"
-import { Card, CardBody, CardImg, CardText, CardTitle, Button } from "reactstrap"
+import { Card, CardBody, CardImg, CardText, CardTitle, Button, Nav, NavLink } from "reactstrap"
 
-const AnimeShow = ({ anime }) => {
+const AnimeShow = ({ anime, currentUser }) => {
   const { id } = useParams()
 
   const selectedAnime = anime.find((anime) => anime.id == id)
@@ -12,6 +12,12 @@ const AnimeShow = ({ anime }) => {
 
   const { name, year, synopsis, run_time, seasons, episodes, studio, genres } =
     selectedAnime
+
+    const addToMyAnimeList = (
+        <NavLink to={`/myanimelist`}>
+            <Button>Add to My Anime List</Button>
+        </NavLink>
+    )
 
   return (
     <div className="m-auto grid items-center grid-cols-3 justify-center">
@@ -38,9 +44,7 @@ const AnimeShow = ({ anime }) => {
                 <li>Year {year}</li>
                 </ul></small>
           </CardText>
-          <Link to={`/myanimelist`}>
-                <Button>Add To My Anime List</Button>
-              </Link>
+          {currentUser && addToMyAnimeList}
         </CardBody>
       </Card>
     </div>
