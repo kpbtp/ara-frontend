@@ -1,10 +1,16 @@
 import {screen, render} from '@testing-library/react';
 import AnimeIndex from '../pages/AnimeIndex';
+import { BrowserRouter } from 'react-router-dom';
+import mockAnime from '../mockAnime';
 
 describe('<AnimeIndex />', () => {
     it('renders a AnimeIndex page', () => {
-        render(<AnimeIndex />);
-        const element = screen.getByText(/bunch/i)
-        expect(element).toBeInTheDocument()
+        render(
+        <BrowserRouter>
+        <AnimeIndex anime={mockAnime} /> 
+        </BrowserRouter>)
+        const element = screen.getAllByText(/Button/i)
+        expect(element.length).toBeGreaterThan(0)
+        console.log(element)
     })
 })
