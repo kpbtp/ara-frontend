@@ -38,7 +38,7 @@ const App = () => {
           <Route path='/myanimelistnew' element={<MyAnimeListNew />}/>
           <Route path='/myanimelistshow' element={<MyAnimeListShow />}/>
           <Route path='/aboutus' element={<AboutUs />}/>
-          <Route path='/notfound' element={<NotFound/>}/>
+          <Route path='/*' element={<NotFound/>}/>
         </Routes>
         <Footer />
       </BrowserRouter>
