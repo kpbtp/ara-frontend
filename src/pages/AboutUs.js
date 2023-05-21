@@ -3,7 +3,10 @@ const AboutUs  = () => {
     return(
         <> 
             <div
-                className='grid justify-items-center'
+                className='
+                    grid justify-items-center
+                    bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% 
+                '
             >
                 <div
                     className="
@@ -16,12 +19,13 @@ const AboutUs  = () => {
                 >
                     <h4>DeMario Ward</h4>
                     <p><strong><em>Team? are you thinking what I'm thinking?</em></strong></p>
-                    <p><strong>Ureshiii Senpai chotto Otaku doki doki Oniisan Baka, chikara Imoto fuzakeru damasu arigatou nii san. Damasu Sugoi chikara okasan Imoto doki doki Senpai. Damaru Imoto Baka Baka kimochi doko chikara Oniisan doki doki. Fuzakeru chotto Ureshiii nii san Baka Sugoi okasan chikara kimochi. Chotto arigatou Oppai kimochi Baka Kawaii Otaku Daijobu nii san. Chotto fuzakeru damasu Ureshiii Tomodachi Senpai Daijobu doko, Tomodachi okasan Ureshiii itadakimasu doko. Baka Oppai Oppai Oniisan, damaru fuzakeru doki doki Otaku damaru itadakimasu Oppai. Doko nii san Kawaii Imoto Imoto, doki doki doki doki itadakimasu Otaku Oniisan damaru nii san arigatou. Daijobu doko fuzakeru Ureshiii Baka Senpai fuzakeru fuzakeru doki doki.</strong></p>
+                    <p><strong>Ureshiii Senpai chotto Otaku doki doki Oniisan Baka, chikara Imoto fuzakeru damasu arigatou nii san. Damasu Sugoi chikara okasan Imoto doki doki Senpai. Damaru Imoto Baka Baka kimochi doko chikara Oniisan doki doki. Fuzakeru chotto Ureshiii nii san Baka Sugoi okasan chikara kimochi. Chotto arigatou Oppai kimochi Baka Kawaii Otaku Daijobu nii san. Chotto fuzakeru damasu Ureshiii Tomodachi Senpai Daijobu doko, Tomodachi okasan Ureshiii itadakimasu doko. Baka Oppai ippai Oniisan, damaru fuzakeru doki doki Otaku damaru itadakimasu Oppai. Doko nii san Kawaii Imoto Imoto, doki doki doki doki itadakimasu Otaku Oniisan damaru nii san arigatou. Daijobu doko fuzakeru Ureshiii Baka Senpai fuzakeru fuzakeru doki doki.</strong></p>
                 </div>
                 <div 
-                        className="
+                    className="
                         bg-no-repeat bg-cover bg-center
-                        bg-[url('../public/anime_art_style_hero_defeating_the_dragon_in_a_vil.jpg')]
+                        text-white
+                        bg-[url('../public/full_metal_black.jpeg')]
                         px-4 py-2 mx-4 my-2
                         rounded-xl
                     "
@@ -32,9 +36,10 @@ const AboutUs  = () => {
 
                 </div>
                 <div
-                        className="
+                    className="
                         bg-no-repeat bg-cover bg-center
-                        bg-[url('../public/anime_art_style_hero_defeating_the_dragon_in_a_vil.jpg')]
+                        text-white
+                        bg-[url('../public/gorgerous-yu-yu-hakusho.jpeg')]
                         px-4 py-2 mx-4 my-2
                         rounded-xl
                     "
@@ -44,7 +49,7 @@ const AboutUs  = () => {
                     <p><strong>Golbat hawlucha sandshrew steenee golbat metagross bounsweet lilligant, silcoon brionne bibarel joltik braixen grubbin. Floette necrozma magby magneton magnemite dugtrio kabuto torchic, rampardos skitty dodrio clauncher salamence dialga. Gabite regice croagunk entei venusaur linoone sneasel skiddo machoke. Conkeldurr kangaskhan blastoise ducklett. Froslass stoutland metang weavile taillow pidgeot pawniard ninjask charjabug smoochum. Lombre aggron cherubi aipom regirock. Starmie gurdurr pupitar delcatty bounsweet blissey gible xatu baltoy ivysaur. Ducklett fraxure mimikyu aurorus trumbeak taillow bellossom hoopa numel.</strong></p>
                 </div>
                 <div
-                        className="
+                    className="
                         bg-no-repeat bg-cover bg-center
                         text-white
                         bg-[url('../public/332717.jpg')]
