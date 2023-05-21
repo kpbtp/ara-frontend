@@ -59,7 +59,7 @@ const Home = (args) => {
 
     return(
         <>
-            <h3>Welcome Home: Sanitarium</h3>
+            <h3 className='text-center'>OKAERI NASAI !</h3>
             <Carousel
                 style={{ alignItems: 'center'}}
                 activeIndex={activeIndex}

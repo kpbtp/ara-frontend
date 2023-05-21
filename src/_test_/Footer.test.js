@@ -3,8 +3,11 @@ import Footer from '../components/Footer';
 
 describe('<Footer />', () => {
     it('renders a Footer page', () => {
-        render(<Footer />);
-        const element = screen.getByText(/Footer/i)
+        render(
+            <BrowserRouter>
+                <Footer />
+            </BrowserRouter>);
+        const element = screen.getByText(/Jose/i)
         expect(element).toBeInTheDocument()
     })
 })
