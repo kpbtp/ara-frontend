@@ -1,7 +1,14 @@
-import { Nav, NavItem } from "reactstrap"
-import { NavLink } from "react-router-dom" 
+import { Nav, NavItem, Button} from "reactstrap"
+import { NavLink, useNavigate } from "react-router-dom" 
 
-const Navigation = ( { current_user } ) => {
+const Navigation = ( { current_user, logout } ) => {
+
+    const navigate = useNavigate()
+    const handleClick = () => {
+        logout()
+        navigate("/")
+      }
+
     return(
         <>
             <Nav className="nav">
@@ -18,6 +25,9 @@ const Navigation = ( { current_user } ) => {
                         </NavItem>
                         <NavItem>
                             <NavLink className='nav-link' to='/aboutus'>The MCs</NavLink> 
+                        </NavItem>
+                        <NavItem>
+                            <Button className='nav-link' onClick={handleClick}>Logout</Button> 
                         </NavItem>
                     </>
                 ) }
