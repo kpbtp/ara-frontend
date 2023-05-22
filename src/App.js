@@ -91,7 +91,7 @@ const App = () => {
           <Route path="/myanimelistnew" element={<MyAnimeListNew />} />
           <Route path="/myanimelistshow/:id" element={<MyAnimeListShow anime={anime} />} />
           <Route path="/aboutus" element={<AboutUs />} />
-          <Route path="/notfound" element={<NotFound />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
         <Footer />
       </BrowserRouter>
