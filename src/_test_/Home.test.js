@@ -4,7 +4,7 @@ import Home from '../pages/Home';
 describe('<Home />', () => {
     it('renders a home page', () => {
         render(<Home />);
-        const element = screen.getByText(/Welcome/i)
+        const element = screen.getByText(/OKAERI/i)
         expect(element).toBeInTheDocument()
     })
 })

@@ -17,7 +17,7 @@ const Navigation = ( { current_user } ) => {
                             <NavLink className='nav-link' to='/animelistnew'>Create a List</NavLink> 
                         </NavItem>
                         <NavItem>
-                            <NavLink className='nav-link' to='/aboutus'>I hath no wit</NavLink> 
+                            <NavLink className='nav-link' to='/aboutus'>The MCs</NavLink> 
                         </NavItem>
                     </>
                 ) }
