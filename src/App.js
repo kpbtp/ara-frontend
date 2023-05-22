@@ -15,6 +15,7 @@ import NotFound from './pages/NotFound'
 import mockUsers from './mockUsers'
 import mockAnime from './mockAnime'
 import AboutUs from './pages/AboutUs'
+// import Navigation from './components/Navigation'
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
@@ -76,14 +77,71 @@ const App = () => {
     .catch(error => console.log('Updated my anime list:', error))
   }
 
+  // authentication methods
+ const login = (userInfo) => {
+  fetch(`${url}/login`, {
+    body: JSON.stringify(userInfo),
+    headers: {
+      "Content-Type": 'application/json',
+      "Accept": 'application/json'
+    },
+    method: 'POST'
+  })
+  .then(response => {
+  // store the token
+  localStorage.setItem("token", response.headers.get("Authorization"))
+  return response.json()
+})
+.then(payload => {
+  setCurrentUser(payload)
+})
+.catch(error => console.log("login errors: ", error))
+}
+
+const signup = (userInfo) => {
+  fetch(`${url}/signup`, {
+    body: JSON.stringify(userInfo),
+    headers: {
+      "Content-Type": 'application/json',
+      "Accept": 'application/json'
+    },
+    method: 'POST'
+  })
+  .then(response => {
+    // store the token
+  localStorage.setItem("token", response.headers.get("Authorization"))
+  return response.json()
+})
+.then(payload => {
+  setCurrentUser(payload)
+})
+.catch(error => console.log("login errors: ", error))
+}
+
+const logout = () => {
+  fetch(`${url}/logout`, {
+    headers: {
+      "Content-Type": 'application/json',
+      "Authorization": localStorage.getItem("token") //retrieve the token 
+    },
+    method: 'DELETE'
+  })
+  .then(payload => {
+  localStorage.removeItem("token")  // remove the token
+  setCurrentUser(null)
+})
+.catch(error => console.log("log out errors: ", error))
+}
+
+
   return (
     <>
       <BrowserRouter>
-        <Header current_user={!currentUser} />
+        <Header current_user={currentUser} logout={logout}/>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup signup={signup}/>} />
+          <Route path="/login" element={<Login login={login}/>} />
           <Route path="/animeindex" element={<AnimeIndex anime={anime} />} />
           <Route path="/animeshow/:id" element={<AnimeShow anime={anime} current_user={!currentUser} />} /> 
           <Route path="/myanimelist" element={<MyAnimeList anime={anime} current_user={!currentUser} />} />
