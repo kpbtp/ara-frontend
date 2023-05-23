@@ -12,8 +12,6 @@ import MyAnimeListEdit from './pages/MyAnimeListEdit'
 import MyAnimeListShow from './pages/MyAnimeListShow'
 import MyAnimeListNew from './pages/MyAnimeListNew'
 import NotFound from './pages/NotFound'
-import mockUsers from './mockUsers'
-import mockAnime from './mockAnime'
 import AboutUs from './pages/AboutUs'
 // import Navigation from './components/Navigation'
 
@@ -34,7 +32,7 @@ const App = () => {
     readMyAnimeList()
   }, [])
 
-  const url = "http://localhost:3000"
+  const url = "https://ara-backend.onrender.com"
 
   const readAnime = () => {
     fetch(`${url}/animes`)
