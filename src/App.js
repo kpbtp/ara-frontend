@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Header from "./components/Header"
-import Home from "./pages/Home"
-import Footer from "./components/Footer"
-import Signup from "./components/Signup"
-import Login from "./components/Login"
-import AnimeIndex from "./pages/AnimeIndex"
-import AnimeShow from "./pages/AnimeShow"
-import MyAnimeList from "./pages/MyAnimeList"
-import MyAnimeListEdit from "./pages/MyAnimeListEdit"
-import MyAnimeListShow from "./pages/MyAnimeListShow"
-import MyAnimeListNew from "./pages/MyAnimeListNew"
-import NotFound from "./pages/NotFound"
-import mockUsers from "./mockUsers"
-import mockAnime from "./mockAnime"
-import AboutUs from "./pages/AboutUs"
+import { useEffect, useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Header from './components/Header'
+import Home from './pages/Home'
+import Footer from './components/Footer'
+import Signup from './components/Signup'
+import Login from './components/Login'
+import AnimeIndex from './pages/AnimeIndex'
+import AnimeShow from './pages/AnimeShow'
+import MyAnimeList from './pages/MyAnimeList'
+import MyAnimeListEdit from './pages/MyAnimeListEdit'
+import MyAnimeListShow from './pages/MyAnimeListShow'
+import MyAnimeListNew from './pages/MyAnimeListNew'
+import NotFound from './pages/NotFound'
+import AboutUs from './pages/AboutUs'
+
+
 // import Navigation from './components/Navigation'
 
 const App = () => {
@@ -32,7 +32,7 @@ const App = () => {
     readAnime() && readMyAnimeList()
   }, [])
 
-  const url = "http://localhost:3000"
+  const url = "https://ara-backend.onrender.com"
 
   const readAnime = () => {
     fetch(`${url}/animes`)
