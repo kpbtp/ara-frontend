@@ -10,5 +10,5 @@ export const TjTestProvider = (props) => {
     <TjTest.Provider value={{ selectedAnimeIds, setSelectedAnimeIds }}>
       {props.children}
     </TjTest.Provider>
-  );
-};
+  )
+}
