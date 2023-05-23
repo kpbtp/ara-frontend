@@ -4,11 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { TjTestProvider } from './pages/TjTest';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
-    <App />
+    <TjTestProvider >
+          <App />
+    </TjTestProvider>
   </React.StrictMode>
 );
 

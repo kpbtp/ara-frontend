@@ -21,6 +21,9 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
   const [anime, setAnime] = useState([])
   const [myanimelist, setMyAnimeList] = useState()
+
+  const [selectedAnimeIds, setSelectedAnimeIds] = useState("")
+
   
   const addToMyAnimeList = (anime) => {
     setMyAnimeList((prevList) => [...prevList, anime])
@@ -143,8 +146,8 @@ const logout = () => {
           <Route path="/signup" element={<Signup signup={signup}/>} />
           <Route path="/login" element={<Login login={login}/>} />
           <Route path="/animeindex" element={<AnimeIndex anime={anime} />} />
-          <Route path="/animeshow/:id" element={<AnimeShow anime={anime} current_user={!currentUser} />} /> 
-          <Route path="/myanimelist" element={<MyAnimeList anime={anime} current_user={!currentUser} />} />
+          <Route path="/animeshow/:id" element={<AnimeShow anime={anime} current_user={currentUser} />} /> 
+          <Route path="/myanimelist" element={<MyAnimeList anime={anime} current_user={currentUser} />} />
           <Route path="/myanimelistedit" element={<MyAnimeListEdit />} />
           <Route path="/myanimelistnew" element={<MyAnimeListNew />} />
           <Route path="/myanimelistshow/:id" element={<MyAnimeListShow anime={anime} />} />

@@ -21,7 +21,7 @@ const Navigation = ( { current_user, logout } ) => {
                             <NavLink className='nav-link' to='/animeindex'>Browse All</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink className='nav-link' to='/animelistnew'>Create a List</NavLink> 
+                            <NavLink className='nav-link' to='/myanimelistnew'>Create a List</NavLink> 
                         </NavItem>
                         <NavItem>
                             <NavLink className='nav-link' to='/aboutus'>The MCs</NavLink> 
