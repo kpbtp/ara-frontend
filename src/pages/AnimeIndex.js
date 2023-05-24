@@ -30,7 +30,7 @@ const AnimeIndex = ({ anime }) => {
   return (
     <div>
       <div className="m-auto grid items-center grid-cols-3 justify-center">
-        {anime?.map(({ id, name, genres, synopsis }) => {
+        {anime?.map(({ id, name, genres, synopsis,  }) => {
           const isChecked = selectedAnimeIds.includes(id)
 
           return (
