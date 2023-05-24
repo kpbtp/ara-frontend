@@ -1,65 +1,74 @@
-import React, { createContext, useContext, useEffect, useState } from "react"
-import {
-  Card,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Button,
-  CardText,
-  Input,
-} from "reactstrap"
-import { NavLink } from "react-router-dom"
-import MyAnimeList from "./MyAnimeList"
-import { TjTest } from "./TjTest"
+import React, { useState, useEffect } from 'react';
 
-const AnimeIndex = ({ anime }) => {
-  const { selectedAnimeIds, setSelectedAnimeIds } = useContext(TjTest)
+const AnimeIndex = () => {
+  const [animeList, setAnimeList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const handleCheckboxChange = (id) => {
-    setSelectedAnimeIds([...selectedAnimeIds, id])
-    if (selectedAnimeIds.includes(id)) {
-      setSelectedAnimeIds(selectedAnimeIds.filter((animeId) => animeId !== id))
-    } else {
-      setSelectedAnimeIds([...selectedAnimeIds, id])
+  const fetchAnimeList = () => {
+    setLoading(true);
+    fetch(`https://api.jikan.moe/v4/anime?page=${currentPage}&limit=21`)
+      .then(response => response.json())
+      .then(data => {
+        setAnimeList(data.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
+
+  useEffect(() => {
+    fetchAnimeList();
+  }, [currentPage]);
+
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
     }
-    console.log(selectedAnimeIds)
-  }
-
-  console.log("TJ-selectedAnimeIds", selectedAnimeIds)
+  };
 
   return (
-    <div>
-      <div className="m-auto grid items-center grid-cols-3 justify-center">
-        {anime?.map(({ id, name, genres, synopsis,  }) => {
-          const isChecked = selectedAnimeIds.includes(id)
-
-          return (
-            <Card className="flex w-18rem mx-auto my-0" key={id}>
-              <img alt="Sample" src="https://picsum.photos/300/200" />
-              <CardBody>
-                <CardTitle tag="h5">{name}</CardTitle>
-                <CardSubtitle className="mb-2 text-muted" tag="h6">
-                  {genres}
-                </CardSubtitle>
-                <CardText>{synopsis}</CardText>
-                <Input
-                  type="checkbox"
-                  name="animeSelection"
-                  checked={isChecked}
-                  onChange={() => handleCheckboxChange(id)}
-                />{" "}
-                Add to My Anime List
-                <NavLink to={`/animeshow/${id}`}>
-                  <Button>Read More</Button>
-                </NavLink>
-              </CardBody>
-            </Card>
-          )
-        })}
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">Anime Index</h1>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {animeList.map(anime => (
+            <div className="bg-white rounded shadow-md" key={anime.id}>
+              <img className="w-full h-48 object-cover" src={anime.images.jpg.image_url} alt={anime.title} />
+              <div className="p-4">
+                <h2 className="text-lg font-bold mb-2">{anime.title}</h2>
+                <p className="text-gray-600 mb-4">{anime.synopsis.slice(0,150)}</p>
+                <p className="text-gray-700">Duration: {anime.duration}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      <div className="mt-4 flex justify-between">
+        <button
+          className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-400 disabled:cursor-not-allowed"
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+        >
+          Previous Page
+        </button>
+        <button
+          className="px-4 py-2 bg-blue-500 text-white rounded"
+          onClick={handleNextPage}
+        >
+          Next Page
+        </button>
       </div>
-      <MyAnimeList selectedAnimeIds={selectedAnimeIds} anime={anime} />
     </div>
-  )
-}
+  );
+};
 
-export default AnimeIndex
+export default AnimeIndex;

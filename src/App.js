@@ -33,23 +33,12 @@ const App = () => {
   }, [])
 
   const url = "http://localhost:3000"
-
-  const [animeImage, setAnimeImage] = useState(null)
-  const apiUrl ='https://api.jikan.moe/v4/'
-  const apiImage = `${apiUrl}anime/1/pictures`
-  const showImage = () => {
-    fetch(apiImage)
-    .then((response) => response.json())
-    .then((payload) => setAnimeImage(payload.data[0].jpg.image_url))
-  }
-  showImage()
+  const apiUrl ='https://api.jikan.moe/v4/anime'
 
   const readAnime = () => {
-    fetch(apiImage)
+    fetch(apiUrl)
       .then((response) => response.json())
-      .then((payload) => {
-        setAnime(payload)
-      })
+      .then((payload) => {setAnime([payload.data])})
       .catch((error) => console.log("Anime read errors", error))
   }
 
@@ -99,6 +88,9 @@ const App = () => {
       method: "POST",
     })
       .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
         // store the token
         localStorage.setItem("token", response.headers.get("Authorization"))
         return response.json()
@@ -119,6 +111,9 @@ const App = () => {
       method: "POST",
     })
       .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
         // store the token
         localStorage.setItem("token", response.headers.get("Authorization"))
         return response.json()
@@ -162,7 +157,7 @@ const App = () => {
             element={<MyAnimeList anime={anime} current_user={currentUser} />}
           />
           <Route path="/myanimelistedit" element={<MyAnimeListEdit />} />
-          <Route path="/myanimelistnew" element={<MyAnimeListNew animeImage={animeImage}/>} />
+          <Route path="/myanimelistnew" element={<MyAnimeListNew />} />
           <Route
             path="/myanimelistshow/:id"
             element={<MyAnimeListShow anime={anime} />}
