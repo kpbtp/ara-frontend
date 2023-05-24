@@ -10,7 +10,7 @@ describe("<AnimeIndex />", () => {
         <AnimeIndex anime={mockAnime} />
       </BrowserRouter>
     )
-    const element = screen.getAllByText(/Button/i)
+    const element = screen.getAllByText(/Read/i)
     expect(element.length).toBeGreaterThan(0)
   })
 })
