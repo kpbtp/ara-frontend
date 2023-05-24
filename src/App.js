@@ -32,10 +32,20 @@ const App = () => {
     readAnime() && readMyAnimeList()
   }, [])
 
-  const url = "https://ara-backend.onrender.com"
+  const url = "http://localhost:3000"
+
+  const [animeImage, setAnimeImage] = useState(null)
+  const apiUrl ='https://api.jikan.moe/v4/'
+  const apiImage = `${apiUrl}anime/1/pictures`
+  const showImage = () => {
+    fetch(apiImage)
+    .then((response) => response.json())
+    .then((payload) => setAnimeImage(payload.data[0].jpg.image_url))
+  }
+  showImage()
 
   const readAnime = () => {
-    fetch(`${url}/animes`)
+    fetch(apiImage)
       .then((response) => response.json())
       .then((payload) => {
         setAnime(payload)
@@ -152,7 +162,7 @@ const App = () => {
             element={<MyAnimeList anime={anime} current_user={currentUser} />}
           />
           <Route path="/myanimelistedit" element={<MyAnimeListEdit />} />
-          <Route path="/myanimelistnew" element={<MyAnimeListNew />} />
+          <Route path="/myanimelistnew" element={<MyAnimeListNew animeImage={animeImage}/>} />
           <Route
             path="/myanimelistshow/:id"
             element={<MyAnimeListShow anime={anime} />}
