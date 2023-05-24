@@ -24,6 +24,10 @@ const App = () => {
 
   const [selectedAnimeIds, setSelectedAnimeIds] = useState("")
 
+  const [animeList, setAnimeList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+
   const addToMyAnimeList = (anime) => {
     setMyAnimeList((prevList) => [...prevList, anime])
   }
@@ -139,6 +143,19 @@ const App = () => {
       .catch((error) => console.log("log out errors: ", error))
   }
 
+  const fetchAnimeIndex = () => {
+    setLoading(true);
+    fetch(`https://api.jikan.moe/v4/anime?page=${currentPage}&limit=21`)
+      .then(response => response.json())
+      .then(data => {
+        setAnimeList(data.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
   return (
     <>
       <BrowserRouter>
@@ -147,14 +164,14 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup signup={signup} />} />
           <Route path="/login" element={<Login login={login} />} />
-          <Route path="/animeindex" element={<AnimeIndex anime={anime} current_user={currentUser} />} />
+          <Route path="/animeindex" element={<AnimeIndex fetchAnimeIndex={fetchAnimeIndex} currentPage={currentPage} loading={loading} current_user={currentUser} animeList={animeList}/>} />
           <Route
             path="/animeshow/:id"
             element={<AnimeShow anime={anime} current_user={currentUser} />}
           />
           <Route
             path="/myanimelist"
-            element={<MyAnimeList anime={anime} current_user={currentUser} />}
+            element={<MyAnimeList current_user={currentUser} animeList={animeList} />}
           />
           <Route path="/myanimelistedit" element={<MyAnimeListEdit />} />
           <Route path="/myanimelistnew" element={<MyAnimeListNew />} />
