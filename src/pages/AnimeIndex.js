@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { TjTest } from './TjTest';
 import MyAnimeList from './MyAnimeList';
 
-const AnimeIndex = ({fetchAnimeIndex, currentPage, setCurrentPage, loading, animeList}) => {
+const AnimeIndex = ({ fetchAnimeIndex, currentPage, setCurrentPage, loading, animeList}) => {
   const { selectedAnimeIds, setSelectedAnimeIds } = useContext(TjTest);
 
  
