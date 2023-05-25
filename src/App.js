@@ -180,6 +180,7 @@ const App = () => {
                 loading={loading}
                 current_user={currentUser}
                 animeList={animeList}
+                setCurrentPage={setCurrentPage}
               />
             }
           />
