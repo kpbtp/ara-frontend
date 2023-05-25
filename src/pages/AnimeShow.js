@@ -1,7 +1,13 @@
 import React, { useState, useContext } from "react";
+import { useEffect } from "react";
+
 const AnimeShow = ({ current_user, id }) => {
   console.log("Anime for anime show: ", id);
-  const [singleAnime, setSingleAnime] = useState(null);
+  const [singleAnime, setSingleAnime] = useState('');
+
+  useEffect(() => {
+    showAnime()
+  }, []);
 
   const showAnime = () => {
     fetch(`https://api.jikan.moe/v4/anime/${id}/full`)
@@ -11,6 +17,7 @@ const AnimeShow = ({ current_user, id }) => {
       })
       .catch((error) => console.log("Anime show errors", error));
   };
+  console.log(singleAnime)
 
   return (
     <>

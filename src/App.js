@@ -166,7 +166,7 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
-        <Header current_user={currentUser} logout={logout} />
+        <Header className='bg-lime-700' current_user={currentUser} logout={logout} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup signup={signup} />} />

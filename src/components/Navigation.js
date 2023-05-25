@@ -20,9 +20,9 @@ const Navigation = ( { current_user, logout } ) => {
                         <NavItem>
                             <NavLink className='nav-link' to='/animeindex'>Browse All</NavLink>
                         </NavItem>
-                        <NavItem>
+                        {/* <NavItem>
                             <NavLink className='nav-link' to='/myanimelistnew'>Create a List</NavLink> 
-                        </NavItem>
+                        </NavItem> */}
                         <NavItem>
                             <NavLink className='nav-link' to='/aboutus'>The MCs</NavLink> 
                         </NavItem>
