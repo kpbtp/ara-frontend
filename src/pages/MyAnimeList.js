@@ -20,12 +20,10 @@ const MyAnimeList = ({ animeList, updateId, id }) => {
     return selectedAnimeIds.includes(mal_id);
   });
 
-  // console.log("Filtered Anime Pics: ", filteredAnime);
-
   const handleClick = (number) => {
-    updateId(number)
-    console.log('ID of anime : ', number )
-  }
+    updateId(number);
+  };
+  console.log(handleClick)
 
   return (
     <>
@@ -54,7 +52,10 @@ const MyAnimeList = ({ animeList, updateId, id }) => {
                 <p className="text-gray-700 mb-5">Duration: {anime.duration}</p>
                 <p className="text-gray-700 mb-5">ID: {anime.mal_id}</p>
                 <Link to={`/animeshow/${anime.mal_id}`}>
-                  <button onClick={handleClick(anime.mal_id)} className="absolute bottom-4 left-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                  <button
+                    onClick={() => handleClick(anime.mal_id)} // Pass the handleClick as a reference
+                    className="absolute bottom-4 left-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  >
                     Go to Anime Show
                   </button>
                 </Link>
