@@ -1,56 +1,70 @@
-import React, { useState, useContext } from "react"
-import { Card, CardBody, CardTitle, CardSubtitle, CardText } from "reactstrap"
-import { TjTest } from "./TjTest"
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import { TjTest } from "./TjTest";
 
-const MyAnimeList = ({ animeList }) => {
-  const { selectedAnimeIds } = useContext(TjTest)
-  const [genreFilter, setGenreFilter] = useState([])
-
-  console.log("List", selectedAnimeIds)
+const MyAnimeList = ({ animeList, updateId, id }) => {
+  const { selectedAnimeIds } = useContext(TjTest);
+  const [genreFilter, setGenreFilter] = useState("");
 
   if (!Array.isArray(selectedAnimeIds)) {
-    return <div>No anime selected</div>
+    return <div>No anime selected</div>;
   }
 
- 
   const filteredAnime = animeList.filter(({ mal_id, genres }) => {
-    console.log("id", mal_id)
     if (
       genreFilter &&
-      !genres.toLowerCase().includes(genreFilter.toLowerCase())
+      !genres.name.toLowerCase().includes(genreFilter.toLowerCase())
     ) {
-      return false
+      return false;
     }
-    return selectedAnimeIds.includes(mal_id)
+    return selectedAnimeIds.includes(mal_id);
+  });
 
-  })
- console.log("Filtered Anime", filteredAnime);
-  
- return (
-    <div className="m-auto grid items-center grid-cols-3 justify-center">
+  // console.log("Filtered Anime Pics: ", filteredAnime);
+
+  const handleClick = (number) => {
+    updateId(number)
+    console.log('ID of anime : ', number )
+  }
+
+  return (
+    <>
+      <input
+        type="text"
+        placeholder="Filter by genre"
+        value={genreFilter}
+        onChange={(e) => setGenreFilter(e.target.value)}
+        className="pb-20"
+      />
       <div>
-        <input
-          type="text"
-          placeholder="Filter by genre"
-          value={genreFilter}
-          onChange={(e) => setGenreFilter(e.target.value)}
-        />
+        <div className="m-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {filteredAnime.map((anime) => (
+            <div className="bg-white shadow-md relative" key={anime.mal_id}>
+              <img
+                className="w-full h-48 object-cover"
+                src={anime.images.jpg.image_url}
+                alt={anime.title}
+              />
+              <div className="p-4">
+                <h2 className="text-lg font-bold mb-2">{anime.title}</h2>
+                <h6>{anime.genres[0].name}</h6>
+                <span className="text-gray-600 mb-4">
+                  {anime.synopsis.slice(0, 150) + " . . ."}
+                </span>
+                <p className="text-gray-700 mb-5">Duration: {anime.duration}</p>
+                <p className="text-gray-700 mb-5">ID: {anime.mal_id}</p>
+                <Link to={`/animeshow/${anime.mal_id}`}>
+                  <button onClick={handleClick(anime.mal_id)} className="absolute bottom-4 left-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Go to Anime Show
+                  </button>
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
+    </>
+  );
+};
 
-      {filteredAnime.map(( anime ) => (
-        <Card className="flex w-18rem mx-auto my-0" key={anime.mal_id}>
-          <img alt="Sample" src="https://picsum.photos/300/200" />
-          <CardBody>
-            <CardTitle tag="h5">{anime.title}</CardTitle>
-            <CardSubtitle className="mb-2 text-muted" tag="h6">
-              {anime.genres}
-            </CardSubtitle>
-            <CardText>{anime.synopsis}</CardText>
-          </CardBody>
-        </Card>
-      ))}
-    </div>
-  )
-}
-
-export default MyAnimeList
+export default MyAnimeList;

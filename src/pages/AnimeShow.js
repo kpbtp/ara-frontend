@@ -1,90 +1,42 @@
-import { useParams, Link } from "react-router-dom"
-import { Card, CardBody, CardImg, CardText, CardTitle, Button, Nav, NavLink } from "reactstrap"
+import React, { useState, useContext } from "react";
+const AnimeShow = ({ current_user, id }) => {
+  console.log("Anime for anime show: ", id);
+  const [singleAnime, setSingleAnime] = useState(null);
 
-const AnimeShow = ({ anime, current_user, addToMyAnimeList }) => {
-  const { id } = useParams()
-
-  const selectedAnime = anime.find((anime) => anime.id == id)
-
-  if (!selectedAnime) {
-    return <div>Anime not found</div>
-  }
-
-  const { name, year, synopsis, run_time, seasons, episodes, studio, genres } =
-    selectedAnime
-
-    const addToMyAnimeListButton = (
-        <NavLink to={`/myanimelist`}>
-            <Button>Add to My Anime List</Button>
-        </NavLink>
-    )
-
-  const handleAddToAnimeList = () => {
-    addToMyAnimeList(selectedAnime)
-  }
+  const showAnime = () => {
+    fetch(`https://api.jikan.moe/v4/anime/${id}/full`)
+      .then((response) => response.json())
+      .then((payload) => {
+        setSingleAnime([payload.data]);
+      })
+      .catch((error) => console.log("Anime show errors", error));
+  };
 
   return (
-    
-    <div className="m-auto grid items-center grid-cols-3 justify-center">
-      { current_user && (
-        <Card className="my-2">
-          <CardImg
-            alt="Card image cap"
-            src="https://picsum.photos/900/180"
-            style={{
-              height: 180,
-            }}
-            top
-            width="100%"
-          />
-          <CardBody>
-            <CardTitle tag="h5">{name}</CardTitle>
-            <CardText>{synopsis}</CardText>
-            <CardText>
-              <small className="text-muted"><ul>
-                  <li>{run_time}</li>
-                  <li>Seasons {seasons}</li>
-                  <li>Episodes {episodes}</li>
-                  <li>Studio {studio}</li>
-                  <li>Genres {genres}</li>
-                  <li>Year {year}</li>
-                  </ul></small>
-            </CardText>
-              <NavLink to={`/myanimelist`}>
-                <Button>Add to My Anime List</Button>
-              </NavLink>
-          </CardBody>
-        </Card>
-      )}
-      { !current_user && (
-        <Card className="my-2">
-          <CardImg
-            alt="Card image cap"
-            src="https://picsum.photos/900/180"
-            style={{
-              height: 180,
-            }}
-            top
-            width="100%"
-          />
-          <CardBody>
-            <CardTitle tag="h5">{name}</CardTitle>
-            <CardText>{synopsis}</CardText>
-            <CardText>
-              <small className="text-muted"><ul>
-                  <li>{run_time}</li>
-                  <li>Seasons {seasons}</li>
-                  <li>Episodes {episodes}</li>
-                  <li>Studio {studio}</li>
-                  <li>Genres {genres}</li>
-                  <li>Year {year}</li>
-                  </ul></small>
-            </CardText>
-          </CardBody>
-        </Card>
-      )}
-    </div>
-  )
-}
+    <>
+      <div>
+        <div className="m-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {singleAnime.map((anime) => (
+            <div className="bg-white shadow-md relative" key={anime.mal_id}>
+              <img
+                className="w-full h-48 object-cover"
+                src={anime.images.jpg.image_url}
+                alt={anime.title}
+              />
+              <div className="p-4">
+                <h2 className="text-lg font-bold mb-2">{anime.title}</h2>
+                <h6>{anime.genres[0].name}</h6>
+                <span className="text-gray-600 mb-4">
+                  {anime.synopsis.slice(0, 150) + " . . ."}
+                </span>
+                <p className="text-gray-700 mb-5">Duration: {anime.duration}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
 
-export default AnimeShow
+export default AnimeShow;
