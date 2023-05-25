@@ -6,7 +6,6 @@ import MyAnimeList from './MyAnimeList';
 const AnimeIndex = ({ fetchAnimeIndex, currentPage, setCurrentPage, loading, animeList}) => {
   const { selectedAnimeIds, setSelectedAnimeIds } = useContext(TjTest);
 
- 
 
   useEffect(() => {
     fetchAnimeIndex();
