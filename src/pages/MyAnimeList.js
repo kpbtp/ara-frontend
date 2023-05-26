@@ -2,11 +2,22 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { TjTest } from "./TjTest";
 
-const MyAnimeList = ({ animeList, updateId, id }) => {
+const MyAnimeList = ({ animeList, updateId, currentUser, createMyAnimeList, updateMyAnimeList }) => {
   const { selectedAnimeIds } = useContext(TjTest);
   const [genreFilter, setGenreFilter] = useState("");
   const [customLists, setCustomLists] = useState({});
   const [newListName, setNewListName] = useState(""); // State for new list name
+  const [list, setList] = useState([]);
+
+  // const readMyAnimeList = () => {
+  //   fetch(`localhost:3000/anime_list/${currentUser.id}`)
+  //     .then((response) => response.json())
+  //     .then((payload) => {
+  //       setList([payload.data])
+  //       console.log("anime list: ", payload.data)
+  //     })
+  //     .catch((error) => console.log("Anime read errors", error));
+  // };
 
   if (!Array.isArray(selectedAnimeIds)) {
     return <div>No anime selected</div>;
@@ -27,18 +38,6 @@ const MyAnimeList = ({ animeList, updateId, id }) => {
     updateId(number);
   };
 
-  const addToCustomList = (anime, listName) => {
-    setCustomLists(prevLists => {
-      const updatedLists = { ...prevLists };
-      if (!updatedLists[listName]) {
-        updatedLists[listName] = [];
-      }
-      if (!updatedLists[listName].some(a => a.mal_id === anime.mal_id)) {
-        updatedLists[listName].push(anime);
-      }
-      return updatedLists;
-    });
-  };
 
   const createCustomList = () => {
     if (newListName.trim() !== "") {
@@ -47,8 +46,49 @@ const MyAnimeList = ({ animeList, updateId, id }) => {
         [newListName]: []
       }));
       setNewListName("");
+  
+      const createdMyAnimeList = {
+        name: newListName,
+        genre_preferences: "action", 
+        user_id: currentUser.id,
+        anime_id: 2
+      };
+  
+      createMyAnimeList(createdMyAnimeList);
     }
+  }
+
+  const addToCustomList = (anime, listName) => {
+    setCustomLists(prevLists => {
+      const updatedLists = { ...prevLists };
+      if (!updatedLists[listName]) {
+        updatedLists[listName] = [];
+      }
+      if (!updatedLists[listName].some(a => a.mal_id === anime.mal_id)) {
+        updatedLists[listName].push(anime);
+  
+        // Find the corresponding anime_list record
+        const animeListRecord = animeList.find(a => a.anime_id === anime.mal_id);
+        if (animeListRecord) {
+         
+  
+          // Create an updated version of the anime_list record
+          const updatedAnimeList = {
+            ...animeListRecord,
+            address: [...animeListRecord.address, anime.mal_id] // Add the anime_id to the address array
+          };
+  
+          // Call the updateMyAnimeList function to update the record
+          updateMyAnimeList(updatedAnimeList);
+        }
+      }
+      return updatedLists;
+    });
   };
+  
+  
+
+  
 
   return (
     <>
@@ -84,12 +124,7 @@ const MyAnimeList = ({ animeList, updateId, id }) => {
                     Go to Anime Show
                   </button>
                 </Link>
-                <button
-                  onClick={() => addToCustomList(anime, "Custom List")}
-                  className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mt-2"
-                >
-                  Add to Custom List
-                </button>
+
                 {Object.entries(customLists).map(([listName, animeList]) => (
                   <button
                     key={listName}

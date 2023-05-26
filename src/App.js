@@ -20,7 +20,6 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [anime, setAnime] = useState([]);
   const [myanimelist, setMyAnimeList] = useState();
-  const [selectedAnimeIds, setSelectedAnimeIds] = useState("");
   const [animeList, setAnimeList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -37,11 +36,12 @@ const App = () => {
   };
 
   useEffect(() => {
-    readAnime() && readMyAnimeList()
+    readAnime() && readMyAnimeList() && createMyAnimeList() && updateMyAnimeList()
   }, []);
 
   const url = "http://localhost:3000";
   const apiUrl = "https://api.jikan.moe/v4/anime";
+
 
   const readAnime = () => {
     fetch(apiUrl)
@@ -54,7 +54,7 @@ const App = () => {
 
 
   const readMyAnimeList = () => {
-    fetch(`${url}/myanimeslist`)
+    fetch(`${url}/anime_lists`)
       .then((response) => response.json())
       .then((payload) => {
         setAnime(payload);
@@ -63,8 +63,11 @@ const App = () => {
   };
 
   const createMyAnimeList = (createdMyAnimeList) => {
-    fetch(`${url}/myanimelist`, {
-      body: JSON.stringify(createdMyAnimeList),
+    fetch(`${url}/anime_lists`, {
+      body: JSON.stringify({
+        ...createdMyAnimeList,
+        user_id: currentUser.id // Associate the current user ID
+      }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -74,9 +77,9 @@ const App = () => {
       .then(() => readMyAnimeList())
       .catch((error) => console.log("Create my anime list error:", error));
   };
-
+  
   const updateMyAnimeList = (selectedMyAnimeList) => {
-    fetch(`${url}/myanimelist/${selectedMyAnimeList.id}`, {
+    fetch(`${url}/anime_lists/${selectedMyAnimeList.id}`, {
       body: JSON.stringify(selectedMyAnimeList),
       headers: {
         "Content-Type": "application/json",
@@ -84,6 +87,7 @@ const App = () => {
       method: "PATCH",
     })
       .then((response) => response.json())
+      .then((response) => console.log("patch response: ", response))
       .then(() => readMyAnimeList())
       .catch((error) => console.log("Updated my anime list:", error));
   };
@@ -107,7 +111,7 @@ const App = () => {
         return response.json();
       })
       .then((payload) => {
-        setCurrentUser(payload);
+        setCurrentUser(payload)
       })
       .catch((error) => console.log("login errors: ", error));
   };
@@ -166,11 +170,11 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
-        <Header className='bg-lime-700' current_user={currentUser} logout={logout} />
+        <Header className='bg-lime-700' currentUser={currentUser} logout={logout} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup signup={signup} />} />
-          <Route path="/login" element={<Login login={login} />} />
+          <Route path="/signup" element={<Signup signup={signup}  />} />
+          <Route path="/login" element={<Login login={login}  />} />
           <Route
             path="/animeindex"
             element={
@@ -178,7 +182,7 @@ const App = () => {
                 fetchAnimeIndex={fetchAnimeIndex}
                 currentPage={currentPage}
                 loading={loading}
-                current_user={currentUser}
+                currentUser={currentUser}
                 animeList={animeList}
                 setCurrentPage={setCurrentPage}
               />
@@ -188,7 +192,7 @@ const App = () => {
             path="/animeshow/:id"
             element={
               <AnimeShow
-                current_user={currentUser}
+                currentUser={currentUser}
                 id={id}
               />
             }
@@ -197,10 +201,12 @@ const App = () => {
             path="/myanimelist"
             element={
               <MyAnimeList
-                current_user={currentUser}
+                currentUser={currentUser}
                 animeList={animeList}
                 updateId={updateId}
                 id={id}
+                createMyAnimeList={createMyAnimeList}
+                updateMyAnimeList={updateMyAnimeList}
               />
             }
           />

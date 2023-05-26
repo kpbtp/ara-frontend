@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { TjTest } from './TjTest';
 import MyAnimeList from './MyAnimeList';
 
-const AnimeIndex = ({ fetchAnimeIndex, currentPage, setCurrentPage, loading, animeList, current_user }) => {
+const AnimeIndex = ({ fetchAnimeIndex, currentPage, setCurrentPage, loading, animeList, currentUser }) => {
   const { selectedAnimeIds, setSelectedAnimeIds } = useContext(TjTest);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const AnimeIndex = ({ fetchAnimeIndex, currentPage, setCurrentPage, loading, ani
     } else {
       setSelectedAnimeIds([...selectedAnimeIds, id]);
     }
-  };
+  }
 
   return (
     <div className="p-4">
@@ -45,7 +45,7 @@ const AnimeIndex = ({ fetchAnimeIndex, currentPage, setCurrentPage, loading, ani
                   <h2 className="text-lg font-bold mb-2">{anime.title}</h2>
                   <span className="text-gray-600 mb-4">{anime.synopsis.slice(0, 150)}</span>
                   <p className="text-gray-700">Duration: {anime.duration}</p>
-                  {current_user && (
+                  {currentUser && (
                     <React.Fragment key={anime.mal_id}>
                       <Input
                         type="checkbox"
