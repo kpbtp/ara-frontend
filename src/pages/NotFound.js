@@ -17,7 +17,7 @@ const NotFound = () => {
 
     const loader = new THREE.TextureLoader();
     const texture = loader.load(
-      "anime_art_style_a_hero_defeating_a_deamon_over_a_b.jpg"
+      "/anime_art_style_humanoid-cat-pirate_navigating_thr.jpg"
     );
     texture.minFilter = THREE.LinearFilter; // Set texture minFilter to LinearFilter for improved image quality
 
@@ -48,7 +48,7 @@ const NotFound = () => {
 
       //up and down linear interpolation on  mouse move
       const targetRotationX = mouseRef.current.y * 0.2;
-      scene.rotation.x += (targetRotationX - scene.rotation.x) * 0.05;
+      scene.rotation.x += (-targetRotationX - scene.rotation.x) * 0.05;
 
       //left and right linear interpolation on mouse move
       const targetRotationY = mouseRef.current.x * 0.2;
@@ -59,8 +59,6 @@ const NotFound = () => {
 
       renderer.render(scene, camera);
     }
-
-
 
     animate();
 
@@ -74,11 +72,21 @@ const NotFound = () => {
   }, []);
 
   return (
-    <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
-      <canvas ref={canvasRef} style={{ position: "absolute", top: 0, left: 0 }} />
-      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
+    <div style={{ position: "fixed", width: "100vw", height: "100vh" }}>
+      <canvas ref={canvasRef} style={{ position: "fixed", top: 0, left: 0 }} />
+      <div
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      >
         <h1>404</h1>
         <p>Sorry Anime Not Found...</p>
+        <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md">
+          Return from whence you came
+        </button>
       </div>
     </div>
   );
