@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const AnimeShow = ({ current_user, id }) => {
+const AnimeShow = ({ currentUser, id }) => {
   const [singleAnime, setSingleAnime] = useState(null);
   const [parallaxStyle, setParallaxStyle] = useState({});
   const transitionDuration = 0.5; // Adjust this value to change the transition duration in seconds

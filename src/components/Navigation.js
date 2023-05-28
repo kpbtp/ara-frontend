@@ -1,7 +1,7 @@
 import { Nav, NavItem, Button} from "reactstrap"
 import { NavLink, useNavigate } from "react-router-dom" 
 
-const Navigation = ( { current_user, logout } ) => {
+const Navigation = ( { currentUser, logout } ) => {
 
     const navigate = useNavigate()
     const handleClick = () => {
@@ -12,7 +12,7 @@ const Navigation = ( { current_user, logout } ) => {
     return(
         <>
             <Nav className="nav">
-                { current_user && (
+                { currentUser && (
                     <>
                         <NavItem>
                             <NavLink className='nav-link text-white' to='/myanimelist'>My Anime List</NavLink>
@@ -31,7 +31,7 @@ const Navigation = ( { current_user, logout } ) => {
                         </NavItem>
                     </>
                 ) }
-                { !current_user && (
+                { !currentUser && (
                     <>
                         <NavItem>
                             <NavLink className='nav-link text-white' to='/signup'>Sign Up</NavLink>
