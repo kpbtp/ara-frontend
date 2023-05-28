@@ -33,12 +33,9 @@ const Login = ({ login }) => {
               <input type="password" name="password" placeholder="password" />
               <br />
               <input type="submit" value="Submit" />
-            </form>
-          </div>
-          <div>
-            <div className="text-center p-3">  
-              Not registered yet?, <a href="/signup">Signup</a> here.
-            </div>  
+              <br />
+            Already registered, <a href="/login">Login</a> here.
+             </form>
           </div>
         </div>
       </div>
