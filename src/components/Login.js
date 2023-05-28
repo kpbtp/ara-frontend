@@ -22,9 +22,9 @@ const Login = ({ login }) => {
 
   return (
     <section className='max-h-full h-screen bg-gradient-to-b p-1 from-gray-950 via-gray-800 to-gray-800 text-white'>
-      <div className="shadow-2xl shadow-orange-950 m-20 bg-rose-600  p-10 rounded-xl my-20 flex-col">
+      <div className="shadow-xl shadow-rose-500 m-20 bg-rose-600  p-10 rounded-xl my-20 flex-col">
         <div className="bg-gray-600  p-3 rounded-lg">
-          <h2 className="text-3xl text-center text-rose-500">Login</h2>
+          <h2 className="text-3xl text-center">Login</h2>
           <div className="flex items-center leading-8 justify-center">
             <form className="px-3" ref={formRef} onSubmit={handleSubmit}>
               Email: <input type="email" name="email" placeholder="email" />
