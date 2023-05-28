@@ -75,7 +75,7 @@ const Home = (args) => {
 
   return (
     <>
-      <div className='max-h-full bg-gradient-to-b p-1 from-gray-950 via-gray-800 to-gray-800 text-white max-h-screen '>
+      <div className='max-h-full bg-gradient-to-b p-1 from-gray-950 via-gray-800 to-gray-800 text-white '>
         <section>
           <div className='p-10'>
             <Carousel
