@@ -58,7 +58,7 @@ const AnimeShow = ({ currentUser, id }) => {
 
   return (
     <>
-      <div className="w-100 bg-blue-700">
+      <div className="w-100 max-h-full h-screen bg-gradient-to-b p-1 from-gray-950 via-gray-800 to-gray-800">
         <div
           className="w-full py-10"
           onMouseMove={handleMouseMove}

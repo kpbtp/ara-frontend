@@ -21,21 +21,26 @@ const Login = ({ login }) => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form  ref={formRef} onSubmit={handleSubmit}>
-        Email: <input type="email" name="email" placeholder="email" />
-        <br />
-        Password:{" "}
-        <input type="password" name="password" placeholder="password" />
-        <br />
-        <input type="submit" value="Submit" />
-      </form>
-      <br />
-      <div>
-        Not registered yet?, <a href="/signup">Signup</a> here.
+    <section className='max-h-full h-screen bg-gradient-to-b p-1 from-gray-950 via-gray-800 to-gray-800 text-white'>
+      <div className="shadow-xl shadow-rose-500 m-20 bg-rose-600  p-10 rounded-xl my-20 flex-col">
+        <div className="bg-gray-600  p-3 rounded-lg">
+          <h2 className="text-3xl text-center">Login</h2>
+          <div className="flex items-center leading-8 justify-center">
+            <form className="px-3" ref={formRef} onSubmit={handleSubmit}>
+              Email: <input type="email" name="email" placeholder="email" />
+              <br />
+              Password:{" "}
+              <input type="password" name="password" placeholder="password" />
+              <br />
+              <input type="submit" value="Submit" />
+              <br />
+            Already registered, <a href="/login">Login</a> here.
+             </form>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
+
   );
 };
 

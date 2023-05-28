@@ -15,35 +15,35 @@ const Navigation = ( { currentUser, logout } ) => {
                 { currentUser && (
                     <>
                         <NavItem>
-                            <NavLink className='nav-link' to='/myanimelist'>My Anime List</NavLink>
+                            <NavLink className='nav-link text-white' to='/myanimelist'>My Anime List</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink className='nav-link' to='/animeindex'>Browse All</NavLink>
+                            <NavLink className='nav-link text-white' to='/animeindex'>Browse All</NavLink>
                         </NavItem>
                         {/* <NavItem>
                             <NavLink className='nav-link' to='/myanimelistnew'>Create a List</NavLink> 
                         </NavItem> */}
                         <NavItem>
-                            <NavLink className='nav-link' to='/aboutus'>The MCs</NavLink> 
+                            <NavLink className='nav-link text-white' to='/aboutus'>The MCs</NavLink> 
                         </NavItem>
                         <NavItem>
-                            <Button className='nav-link' onClick={handleClick}>Logout</Button> 
+                            <Button className='nav-link text-white' onClick={handleClick}>Logout</Button> 
                         </NavItem>
                     </>
                 ) }
                 { !currentUser && (
                     <>
                         <NavItem>
-                            <NavLink className='nav-link' to='/signup'>Sign Up</NavLink>
+                            <NavLink className='nav-link text-white' to='/signup'>Sign Up</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink className='nav-link' to='/login'>Login</NavLink> 
+                            <NavLink className='nav-link text-white' to='/login'>Login</NavLink> 
                         </NavItem>
                         <NavItem>
-                            <NavLink className='nav-link' to='/animeindex'>Browse All</NavLink>
+                            <NavLink className='nav-link text-white' to='/animeindex'>Browse All</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink className='nav-link' to='/aboutus'>I hath no wit</NavLink> 
+                            <NavLink className='nav-link text-white' to='/aboutus'>I hath no wit</NavLink> 
                         </NavItem>
                         
                     </>
