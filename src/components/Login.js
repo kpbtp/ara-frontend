@@ -21,7 +21,7 @@ const Login = ({ login }) => {
   };
 
   return (
-    <section className='max-h-full h-screen bg-gradient-to-b p-1 from-gray-950 via-gray-800 to-gray-800 text-white'>
+    <section className='max-h-full h-screen bg-gradient-to-b p-1 from-gray-950 via-gray-800 to-gray-800'>
       <div className="shadow-xl shadow-rose-500 m-20 bg-rose-600  p-10 rounded-xl my-20 flex-col">
         <div className="bg-gray-600  p-3 rounded-lg">
           <h2 className="text-3xl text-center">Login</h2>
