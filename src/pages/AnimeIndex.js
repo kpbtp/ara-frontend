@@ -29,7 +29,7 @@ const AnimeIndex = ({ fetchAnimeIndex, currentPage, setCurrentPage, loading, ani
   }
 
   return (
-    <div className="pt-4 pb-12 bg-gradient-to-b from-gray-950 via-gray-800 to-gray-800 text-white">
+    <div className="pt-4 pb-20 bg-gradient-to-b from-gray-950 via-gray-800 to-gray-800 text-white">
       <h1 className="text-2xl font-bold mb-4">Anime Index</h1>
       {loading ? (
         <p>Loading...</p>
@@ -39,12 +39,12 @@ const AnimeIndex = ({ fetchAnimeIndex, currentPage, setCurrentPage, loading, ani
             const isChecked = selectedAnimeIds.includes(anime.mal_id);
 
             return (
-              <div className="bg-white rounded shadow-md" key={anime.mal_id}>
+              <div className="bg-gray-800 rounded shadow-md" key={anime.mal_id}>
                 <img className="w-full h-48 object-cover" src={anime.images.jpg.image_url} alt={anime.title} />
                 <div className="p-4">
                   <h2 className="text-lg font-bold mb-2">{anime.title}</h2>
-                  <span className="text-gray-600 mb-4">{anime.synopsis.slice(0, 150)}</span>
-                  <p className="text-gray-700">Duration: {anime.duration}</p>
+                  <span className="text-gray-500 mb-4">{anime.synopsis.slice(0, 150)}</span>
+                  <p className="text-gray-500">Duration: {anime.duration}</p>
                   {currentUser && (
                     <React.Fragment key={anime.mal_id}>
                       <Input
