@@ -29,7 +29,7 @@ const AnimeIndex = ({ fetchAnimeIndex, currentPage, setCurrentPage, loading, ani
   }
 
   return (
-    <div className="p-4">
+    <div className="pt-4 pb-12 bg-gradient-to-b from-gray-950 via-gray-800 to-gray-800 text-white">
       <h1 className="text-2xl font-bold mb-4">Anime Index</h1>
       {loading ? (
         <p>Loading...</p>
