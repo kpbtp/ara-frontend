@@ -43,7 +43,7 @@ const Navigation = ( { currentUser, logout } ) => {
                             <NavLink className='nav-link text-white' to='/animeindex'>Browse All</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink className='nav-link text-white' to='/aboutus'>I hath no wit</NavLink> 
+                            <NavLink className='nav-link text-white' to='/aboutus'>The MCs</NavLink> 
                         </NavItem>
                         
                     </>
