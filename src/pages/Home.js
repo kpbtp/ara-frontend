@@ -15,8 +15,12 @@ const Home = (args) => {
     fetchCarouselImage();
   }, []);
 
+  const randomPage = (num) => {
+    return Math.floor(Math.random()*num)
+  }
+
   const fetchCarouselImage = () => {
-    fetch('https://api.jikan.moe/v4/anime?page=1&limit=4')
+    fetch(`https://api.jikan.moe/v4/anime?page=${randomPage(375)}&limit=4`)
       .then((response) => response.json())
       .then((data) => {
         setCarouselImage(data.data);
@@ -28,7 +32,7 @@ const Home = (args) => {
 
   const items = [
     {
-      src: carouselImage ? carouselImage[0].images.jpg.image_url : '',
+      src: carouselImage ? carouselImage[1].images.jpg.image_url : '',
       altText: 'Man with a horse',
       key: 1,
     },
