@@ -92,7 +92,7 @@ const MyAnimeList = ({ animeList, updateId, currentUser, createMyAnimeList, upda
 
   return (
     <>
-    <div className="vh-100 bg-gradient-to-b p-1 from-gray-950 via-gray-800 to-gray-800 text-white">
+    <div className="h-full bg-gradient-to-b p-1 from-gray-950 via-gray-800 to-gray-800 text-white px-5">
       <input
         type="text"
         placeholder="Filter by genre"
@@ -100,10 +100,30 @@ const MyAnimeList = ({ animeList, updateId, currentUser, createMyAnimeList, upda
         onChange={(e) => setGenreFilter(e.target.value)}
         className="pb-20"
       />
+
+{/* Create new custom list */}
+<div>
+        <input
+          type="text"
+          placeholder="Enter list name"
+          value={newListName}
+          onChange={(e) => setNewListName(e.target.value)}
+          className="mt-4 text-black"
+          
+        />
+        <button
+          onClick={createCustomList}
+          className="relative bg-gray-500 hover:bg-gray-700 shadow-md shadow-blue-500 text-white font-bold py-2 px-4 rounded mt-2 ml-2"
+        >
+          Create New List
+        </button>
+      </div>
+
       <div>
-        <div className="m-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 m-3 pb-20">
           {filteredAnime.map((anime) => (
-            <div className="bg-white shadow-md relative" key={anime.mal_id}>
+            <div className="bg-gray-800 rounded-xl shadow-md shadow-blue-500 relative" key={anime.mal_id}>
               <img
                 className="w-full h-48 object-cover"
                 src={anime.images.jpg.image_url}
@@ -143,7 +163,7 @@ const MyAnimeList = ({ animeList, updateId, currentUser, createMyAnimeList, upda
 
       {/* Render custom lists */}
       <div className="m-4">
-        <h2 className="text-lg font-bold mb-2">Custom Lists</h2>
+        
         {Object.entries(customLists).map(([listName, animeList]) => (
           <div key={listName}>
             <h3 className="text-md font-bold mb-2">{listName}</h3>
@@ -177,24 +197,6 @@ const MyAnimeList = ({ animeList, updateId, currentUser, createMyAnimeList, upda
             </div>
           </div>
         ))}
-
-        {/* Create new custom list */}
-        <div>
-          <input
-            type="text"
-            placeholder="Enter list name"
-            value={newListName}
-            onChange={(e) => setNewListName(e.target.value)}
-            className="mt-4 text-black"
-            
-          />
-          <button
-            onClick={createCustomList}
-            className="relative bg-gray-500 hover:bg-gray-700 shadow-md shadow-blue-500 text-white font-bold py-2 px-4 rounded mt-2 ml-2"
-          >
-            Create New List
-          </button>
-        </div>
       </div>
       </div>
     </>
