@@ -13,6 +13,7 @@ import MyAnimeListShow from "./pages/MyAnimeListShow";
 import MyAnimeListNew from "./pages/MyAnimeListNew";
 import NotFound from "./pages/NotFound";
 import AboutUs from "./pages/AboutUs";
+import AnimeSearch from "./pages/AnimeSearch";
 
 // import Navigation from './components/Navigation'
 
@@ -212,6 +213,7 @@ const App = () => {
           <Route path="/myanimelistedit" element={<MyAnimeListEdit />} />
           <Route path="/myanimelistnew" element={<MyAnimeListNew />} />
           <Route path="/myanimelistshow/:id" element={<MyAnimeListShow />} />
+          <Route path="/animesearch" element={<AnimeSearch currentUser={currentUser} />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
