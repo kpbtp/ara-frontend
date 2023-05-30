@@ -7,10 +7,10 @@ describe("<AnimeShow />", () => {
   it("renders an AnimeShow page", () => {
     render(
       <BrowserRouter>
-        <AnimeShow anime={mockAnime} />
+        <AnimeShow currentUser={null} id={1} />
       </BrowserRouter>
-    );
-    const element = screen.getByText(/Anime not found/i);
-    expect(element).toBeInTheDocument();
-  });
-});
+    )
+    const element = screen.getByText(/Loading.../i)
+    expect(element).toBeInTheDocument()
+  })
+})
