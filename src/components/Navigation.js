@@ -8,7 +8,6 @@ const Navigation = ( { currentUser, logout } ) => {
         logout()
         navigate("/")
       }
-
     return(
         <>
             <Nav className="nav">
