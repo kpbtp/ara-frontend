@@ -156,7 +156,7 @@ const App = () => {
 
   const fetchAnimeIndex = () => {
     setLoading(true);
-    fetch(`https://api.jikan.moe/v4/anime?page=${currentPage}&limit=21`)
+    fetch(`https://api.jikan.moe/v4/anime?page=${currentPage}&limit=24`)
       .then((response) => response.json())
       .then((data) => {
         setAnimeList(data.data);

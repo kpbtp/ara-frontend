@@ -33,7 +33,7 @@ const NotFound = () => {
       return Math.floor(Math.random() * num) + 1;
     }
     //change num for the total number of pics
-    const texture = loader.load(`/pic${randomNum(4)}.jpg`);
+    const texture = loader.load(`/pic${randomNum(7)}.jpg`);
     texture.minFilter = THREE.LinearFilter;
 
     const material = new THREE.MeshBasicMaterial({ map: texture });
@@ -58,7 +58,7 @@ const NotFound = () => {
       camera.rotation.x = rotationRef.current.x;
       camera.rotation.y = -rotationRef.current.y;
 
-      scene.rotation.y += 0.003;
+      scene.rotation.y += 0.002;
 
       renderer.render(scene, camera);
     }
