@@ -39,7 +39,7 @@ const App = () => {
     readAnime() && readMyAnimeList() && createMyAnimeList() && updateMyAnimeList()
   }, []);
 
-  const url = "http://localhost:3000";
+  const url = "ara.onrender.com";
   const apiUrl = "https://api.jikan.moe/v4/anime";
 
 
