@@ -19,9 +19,9 @@ const Navigation = ( { currentUser, logout } ) => {
                         <NavItem>
                             <NavLink className='nav-link text-white' to='/animeindex'>Browse All</NavLink>
                         </NavItem>
-                        {/* <NavItem>
-                            <NavLink className='nav-link' to='/myanimelistnew'>Create a List</NavLink> 
-                        </NavItem> */}
+                        <NavItem>
+                            <NavLink className='nav-link text-white' to='/animesearch'>Search</NavLink> 
+                        </NavItem>
                         <NavItem>
                             <NavLink className='nav-link text-white' to='/aboutus'>The MCs</NavLink> 
                         </NavItem>
