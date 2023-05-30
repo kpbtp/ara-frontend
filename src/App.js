@@ -23,7 +23,6 @@ const App = () => {
   const [animeList, setAnimeList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-
   const [id, setId] = useState(null);
 
 

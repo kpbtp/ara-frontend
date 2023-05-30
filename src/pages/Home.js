@@ -39,12 +39,12 @@ const Home = (args) => {
     {
       src: carouselImage ? carouselImage[2].images.jpg.image_url : '',
       altText: 'Man with a horse',
-      key: 1,
+      key: 2,
     },
     {
       src: carouselImage ? carouselImage[3].images.jpg.image_url : '',
       altText: 'Man with a horse',
-      key: 1,
+      key: 3,
     },
   ];
 
