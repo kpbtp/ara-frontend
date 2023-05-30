@@ -27,37 +27,33 @@ const Login = ({ login }) => {
           <h2 className="text-3xl text-center">Login</h2>
           <div className="flex items-center leading-8 justify-center">
             <form className="px-3" ref={formRef} onSubmit={handleSubmit}>
-
               <div className="grid grid-cols-1">
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                className="rounded mb-2 mt-3 px-1 justify-center"
-              />
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                className="rounded px-1"
-              />
-              </div>
-              <br />
-              <div className="flex justify-center">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  className="rounded mb-2 mt-3 px-1 "
+                />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  className="rounded px-1 mb-2"
+                />
                 <input
                   type="submit"
-                  value="Submit"
-                  className="bg-pink-800 hover:bg-pink-600 text-white font-bold  px-2 rounded"
+                  value="Login"
+                  className="bg-pink-800 hover:bg-pink-600 text-white font-bold  px-2 rounded mb-5"
                 />
               </div>
-              <br />
-              Already registered?{" "}
+
+              Need an account?{" "}
               <a
                 href="/signup"
                 className="text-white no-underline hover:text-gray-300"
               >
-                <span className="hover:text-pink-400">Signup</span>
-              </a>{" "}
+                <span className="hover:text-pink-400">Signup </span>
+              </a>
               here!
             </form>
           </div>
