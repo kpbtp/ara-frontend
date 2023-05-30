@@ -92,6 +92,7 @@ const MyAnimeList = ({ animeList, updateId, currentUser, createMyAnimeList, upda
 
   return (
     <>
+    <div className="vh-100 bg-gradient-to-b p-1 from-gray-950 via-gray-800 to-gray-800 text-white">
       <input
         type="text"
         placeholder="Filter by genre"
@@ -184,15 +185,17 @@ const MyAnimeList = ({ animeList, updateId, currentUser, createMyAnimeList, upda
             placeholder="Enter list name"
             value={newListName}
             onChange={(e) => setNewListName(e.target.value)}
-            className="mt-4"
+            className="mt-4 text-black"
+            
           />
           <button
             onClick={createCustomList}
-            className="relative bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mt-2"
+            className="relative bg-gray-500 hover:bg-gray-700 shadow-md shadow-blue-500 text-white font-bold py-2 px-4 rounded mt-2 ml-2"
           >
             Create New List
           </button>
         </div>
+      </div>
       </div>
     </>
   );
