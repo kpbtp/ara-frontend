@@ -45,7 +45,7 @@ const AboutUs  = () => {
                                 <div className="py-1 bg-gray-800 flex flex-col justify-center w-11/12 mx-auto absolute rounded shadow -mt-12 right-0 left-0">
                                     <p className="text-xl text-center text-red-400 font-normal mb-1">Brandon Johnwell</p>
                                     <p className="text-center text-base text-red-400">Project Manager</p>
-                                    <p className="text-center text-base text-red-400">I think so DeeMo. I mean why are tomatoes considered vegetables when they are are actually a fruit? Narf!</p>
+                                    <p className="text-center text-base text-red-400">I think so DeeMo. I mean, why are tomatoes considered vegetables when they are are actually a fruit? Narf!</p>
                                 </div>
                             </div>
 
