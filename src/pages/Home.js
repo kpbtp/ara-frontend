@@ -87,13 +87,13 @@ const Home = (args) => {
      <div className="m-4 rounded-lg flex justify-content-center">
         <img src={item.src} alt={item.altText} className="rounded-xl" />
       </div>
-      <div className="p-3 rounded-lg shadow-xl shadow-black columns-1 bg-gradient-to-l from-slate-900 via-slate-800 to-slate-900 ">
+      <div className="p-3 rounded-lg shadow-xl shadow-black columns-1 bg-gradient-to-tl from-slate-900 via-slate-800 to-slate-900 ">
         <h3 className=" px-10 m-1 text-rose-500 font-medium text-center">
           {item.title}
         </h3>
         
-        <p className="text-gray-300  px-10 m-1 text-sm text-center">{item.year}</p>
-        <p className="text-gray-300  px-10 m-1 text-sm text-center">{item.synopsis}</p>
+        <p className="text-gray-300  px-10 m-2 text-sm text-center">{item.year}</p>
+        <p className="text-gray-300  px-10 my-4 mx-2 text-sm ">{item.synopsis}</p>
       </div>
     </CarouselItem>
   ));
