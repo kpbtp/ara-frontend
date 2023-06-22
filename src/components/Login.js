@@ -1,23 +1,38 @@
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const Login = ({ login }) => {
   const formRef = useRef();
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
-    //stop the default behavior of the form.  We want to send it with fetch.
+  const [errorMessage, setErrorMessage] = useState("");
+  const [userInfo, setUserInfo] = useState({ email: "", password: "" });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // store the form entries in a variable
-    const formData = new FormData(formRef.current);
-    // create and object from the entries
-    const data = Object.fromEntries(formData);
-    // store user's info in format that can be used with jwt.
-    const userInfo = {
-      user: { email: data.email, password: data.password },
-    };
-    login(userInfo);
-    navigate("/");
-    e.target.reset(); // resets the input field
+
+    try {
+      const formData = new FormData(formRef.current);
+      const data = Object.fromEntries(formData);
+      setUserInfo({ email: data.email, password: data.password });
+
+      const response = await login(userInfo);
+      
+      if (response.success) {
+        // Successful login
+        setErrorMessage("");
+        navigate("/");
+      } else {
+        // Login failed, display error message
+        setErrorMessage(response.message);
+      }
+    } catch (error) {
+      setErrorMessage("An error occurred. Please try again later.");
+      console.error(error);
+    }
+  };
+
+  const handleChange = (e) => {
+    setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
   };
 
   return (
@@ -32,21 +47,25 @@ const Login = ({ login }) => {
                   type="email"
                   name="email"
                   placeholder="Email"
-                  className="rounded mb-2 mt-3 px-1 "
+                  className="rounded mb-2 mt-3 px-1"
+                  value={userInfo.email}
+                  onChange={handleChange}
                 />
                 <input
                   type="password"
                   name="password"
                   placeholder="Password"
                   className="rounded px-1 mb-2"
+                  value={userInfo.password}
+                  onChange={handleChange}
                 />
                 <input
                   type="submit"
                   value="Login"
-                  className="bg-pink-800 hover:bg-pink-600 text-white font-bold  px-2 rounded mb-5"
+                  className="bg-pink-800 hover:bg-pink-600 text-white font-bold px-2 rounded mb-5"
                 />
               </div>
-
+              {errorMessage && <p className="text-red-500">{errorMessage}</p>}
               Need an account?{" "}
               <a
                 href="/signup"
